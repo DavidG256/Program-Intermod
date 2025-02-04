@@ -1,69 +1,77 @@
+import java.util.Scanner;
+
+// Autor: David García Antón
 public class Vendedor {
-    protected String IDVendedor;
-    protected boolean esJefe;
-    protected double salario;
-    protected double jornada;
+    private String idVendedor;
+    private boolean esJefe;
+    private String salario;
+    private String jornadaLaboral;
 
 
-    public Vendedor(String IDVendedor) {
-        this.IDVendedor = IDVendedor;
-
-    }
-
-    public String getIDVendedor() {
-        return IDVendedor;
-    }
-
-    public void setIDVendedor(String IDVendedor) {
-        this.IDVendedor = IDVendedor;
+    public Vendedor(String idVendedor, boolean esJefe, String salario, String jornadaLaboral) {
+        setIdVendedor(idVendedor);
+        setEsJefe(esJefe);
+        setSalario(salario);
+        setJornadaLaboral(jornadaLaboral);
     }
 
 
-    public Vendedor(boolean esJefe) {
-        this.esJefe = esJefe;
+    public String getIdVendedor() {
+        return idVendedor;
     }
 
-    public double getSalario() {
+    public boolean getEsJefe() {
+        return esJefe;
+    }
+
+    public String getSalario() {
         return salario;
     }
 
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
-
-    public Vendedor(double jornada) {
-        this.jornada = jornada;
-    }
-
-    public double getJornada() {
-        return jornada;
-    }
-
-    public void setJornada(double jornada) {
-        this.jornada = jornada;
-    }
-
-    public class IDVendedor {
-
+    public String getJornadaLaboral() {
+        return jornadaLaboral;
     }
 
 
-
-    public class esJefe {
-
-
+    public void setIdVendedor(String idVendedor) {
+        if (idVendedor != null && idVendedor.length() <= 9) {
+            this.idVendedor = idVendedor;
+        } else {
+            throw new IllegalArgumentException("ID de Vendedor inválido (máx 9 caracteres).");
+        }
     }
 
-    public class salario {
+    public void setEsJefe(boolean esJefe) {
+        this.esJefe = esJefe;
+    }
 
+    public void setSalario(String salario) {
+        try {
+            Integer.parseInt(salario);
+            if (salario.length() <= 10) {
+                this.salario = salario;
+            } else {
+                throw new IllegalArgumentException("Salario inválido (máx 10 dígitos).");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Salario debe contener solo números.");
+        }
+    }
+
+    public void setJornadaLaboral(String jornadaLaboral) {
+        if (jornadaLaboral != null && jornadaLaboral.length() <= 10) {
+            this.jornadaLaboral = jornadaLaboral;
+        } else {
+            throw new IllegalArgumentException("Jornada laboral inválida (máx 10 caracteres).");
+        }
     }
 
 
-    public class jornada {
-
+    public void mostrarVendedor() {
+        System.out.println("Vendedor :");
+        System.out.println("IDVendedor: " + idVendedor);
+        System.out.println("Es Jefe: " + esJefe);
+        System.out.println("Salario: " + salario);
+        System.out.println("Jornada Laboral: " + jornadaLaboral);
     }
-
-
-
-
 }
